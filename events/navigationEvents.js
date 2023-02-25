@@ -20,10 +20,10 @@ const navigationEvents = () => {
     getBooks().then(showBooks);
   });
 
-  // TODO: FAVORITE AUTHOR
-  // document.querySelector('#fav-authors').addEventListener('click', () => {
-  //   getFavoriteAuthors().then(showAuthors);
-  // });
+  // TODO: FAVORITE AUTHOR for some reason messes up my authors event listener
+  document.querySelector('#fav-authors').addEventListener('click', () => {
+    getFavoriteAuthors().then(showAuthors);
+  });
 
   // FIXME: STUDENTS Create an event listener for the Authors
   // 1. When a user clicks the authors link, make a call to firebase to get all authors

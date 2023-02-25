@@ -17,12 +17,13 @@ const formEvents = () => {
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
       };
-
+      // create
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         console.warn(patchPayload);
-
+        // patch
         updateBook(patchPayload).then(() => {
+          // fetch
           getBooks().then(showBooks);
         });
       });

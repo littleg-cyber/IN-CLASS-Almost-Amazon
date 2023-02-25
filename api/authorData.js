@@ -35,12 +35,14 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    // take our payload, turn java script object into JSON object
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
+// Update author
 
 // FIXME: GET SINGLE AUTHOR
 const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
@@ -48,7 +50,7 @@ const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    }
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
   })
     .then((response) => response.json())
     .then((data) => resolve(data)) // will resolve a single object
