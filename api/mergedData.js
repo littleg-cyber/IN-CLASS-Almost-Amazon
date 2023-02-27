@@ -1,6 +1,6 @@
 // for merged promises. Merging the data for both promises together
-import { getSingleBook } from './bookData';
-import { getSingleAuthor } from './authorData';
+import { getAuthorBooks, getSingleAuthor, deleteSingleAuthor } from './authorData';
+import { deleteBook, getSingleBook } from './bookData';
 
 // TODO: Get data for viewBook
 const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
@@ -13,4 +13,27 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
   // Create an object that has book data and an object named authorObject
 });
 
-export default getBookDetails;
+const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getAuthorBooks(firebaseKey).then((authorBooksArray) => {
+    const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
+
+    Promise.all(deleteBookPromises).then(() => {
+      deleteSingleAuthor(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
+
+// TODO: Get data for viewBook
+const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
+  // GET SINGLE BOOK
+  getAuthorBooks(firebaseKey).then((authorObject) => { // returns single author object
+    getSingleBook(authorObject.firebaseKey) // we nest this promise so that we can use the author object
+      .then((bookObject) => resolve({ ...bookObject, authorObject }));
+  }).catch(reject);
+});
+
+export {
+  getBookDetails,
+  getAuthorDetails,
+  deleteAuthorBooksRelationship,
+};
