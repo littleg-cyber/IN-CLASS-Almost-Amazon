@@ -3,7 +3,7 @@ import { createBook, getBooks, updateBook } from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 
-const formEvents = () => {
+const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
     // TODO: CLICK EVENT FOR SUBMITTING FORM FOR ADDING A BOOK
@@ -16,6 +16,7 @@ const formEvents = () => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
+        uid: user.uid,
       };
       // create
       createBook(payload).then(({ name }) => {
@@ -24,7 +25,7 @@ const formEvents = () => {
         // patch
         updateBook(patchPayload).then(() => {
           // fetch
-          getBooks().then(showBooks);
+          getBooks(user.uid).then(showBooks);
         });
       });
     }
@@ -45,7 +46,7 @@ const formEvents = () => {
       };
 
       updateBook(payload).then(() => {
-        getBooks().then(showBooks);
+        getBooks(user.uid).then(showBooks);
       });
     }
 
