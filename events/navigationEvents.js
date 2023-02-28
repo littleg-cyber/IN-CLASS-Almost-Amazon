@@ -12,7 +12,7 @@ const navigationEvents = (user) => {
 
   // TODO: BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
-    booksOnSale().then(showBooks);
+    booksOnSale(user.uid).then(showBooks);
   });
 
   // TODO: ALL BOOKS

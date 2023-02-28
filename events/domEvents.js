@@ -55,7 +55,7 @@ const domEvents = (user) => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteSingleAuthor(firebaseKey).then(() => {
-          getAuthors().then(showAuthors);
+          getAuthors(user.uid).then(showAuthors);
         });
       }
     }
