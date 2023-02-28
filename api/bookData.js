@@ -12,18 +12,12 @@ const getBooks = (uid) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
 
 const booksOnSale = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo=${uid}`, {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

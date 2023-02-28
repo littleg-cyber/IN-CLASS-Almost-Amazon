@@ -17,7 +17,7 @@ const getAuthors = (uid) => new Promise((resolve, reject) => {
 
 // TODO: FILTER AUTHORS FAV
 const getFavoriteAuthors = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=${uid}`, {
+  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
