@@ -8,7 +8,7 @@ import viewBook from '../pages/viewBook';
 import { getBookDetails, getAuthorDetails } from '../api/mergedData';
 import viewAuthor from '../pages/viewAuthor';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // TODO: CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
@@ -18,7 +18,7 @@ const domEvents = () => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteBook(firebaseKey).then(() => {
-          getBooks().then(showBooks);
+          getBooks(user.uid).then(showBooks);
         });
       }
     }
