@@ -65,7 +65,7 @@ const formEvents = (user) => {
         const patchPayload = { firebaseKey: name };
 
         updateAuthor(patchPayload).then(() => {
-          getAuthors().then(showAuthors);
+          getAuthors(user.uid).then(showAuthors);
         });
       });
     }
@@ -82,7 +82,7 @@ const formEvents = (user) => {
       };
 
       updateAuthor(payload).then(() => {
-        getAuthors().then(showAuthors);
+        getAuthors(user.uid).then(showAuthors);
       });
     }
   });
