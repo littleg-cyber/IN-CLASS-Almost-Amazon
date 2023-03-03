@@ -21,7 +21,7 @@ const navigationEvents = (user) => {
   });
 
   // TODO: FAVORITE AUTHOR
-  document.querySelector('#fav-authors').addEventListener('click', () => {
+  document.querySelector('#favorite').addEventListener('click', () => {
     getFavoriteAuthors(user.uid).then(showAuthors);
   });
 
